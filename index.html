@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="manifest" href="manifest.json">
+    <title>dogs</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            height: 22px;
+            background-color: rgb(223, 13, 223);
+            padding: 10px;
+            color: white;
+        }
+
+        #content {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .dog {
+            height: 400px;
+            width: 450px; 
+        }
+
+        .dog img {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>Dogs</header>
+    <div id="content"></div>
+    <script src="main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(sw => {
+                let worker = sw.installing || sw.waiting || sw.active;
+                console.log('worker', sw);
+
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('controllerchange: new service worker')
+                    worker = navigator.serviceWorker.controller;
+                });
+
+                worker.postMessage('hi from the worker');
+            });
+
+            navigator.serviceWorker.ready.then(reg => {
+                console.log('a service worker is active', reg);
+            });
+        }
+    </script>
+</body>
+</html>

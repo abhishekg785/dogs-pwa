@@ -1,0 +1,16 @@
+{
+    "short_name": "dogs",
+    "name": "dogs pwa",
+    "display": "standalone",
+    "start_url": "/",
+    "background_color": "#1976D2",
+    "theme_color": "#1976D2",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "icons/icon_512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
